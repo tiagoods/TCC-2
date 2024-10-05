@@ -1,0 +1,52 @@
+<!-- Foi baseado na cena fornecida por Heitz para white furnace test.
+ Disponível em: https://eheitzresearch.wordpress.com/240-2/ -->
+
+<scene version="3.0.0">
+
+	<integrator type="path">
+		<integer name="max_depth" value="10"/>
+	</integrator>
+
+	<sensor type="perspective">
+		<float name="fov" value="45"/>
+		<string name="fov_axis" value="x"/>
+
+		<transform name="to_world">
+			<lookat target="1.17426, 1.18109, 1.23814"
+							origin="1.75161, 1.75844, 1.81549"
+							up="-0.408246, 0.816499, -0.408246"/>
+		</transform>
+
+		<sampler type="independent">
+			<integer name="sample_count" value="256"/>
+		</sampler>
+
+		<film type="hdrfilm">
+			<integer name="height" value="600"/>
+			<integer name="width" value="600"/>
+			<string name="pixel_format" value="rgb"/>
+		</film>
+	</sensor>
+
+	<emitter type="constant">
+		<rgb name="radiance" value="1, 1, 1"/>
+	</emitter>
+
+  <bsdf type="roughconductor" id="bsdf-whitefurnace">
+		<string name="material" value="none"/>
+		<string name="distribution" value="ggx" />
+		<float name="alpha" value="1"/>
+	</bsdf>
+
+	<!-- <bsdf type="roughconductor_heitz" id="bsdf-whitefurnace">
+		<string name="material" value="none"/>
+		<string name="distribution" value="ggx" />
+		<float name="alpha" value="1"/>
+		<integer name="maxBounces" value="10"/>
+	</bsdf> -->
+
+	<shape type="sphere" id="shape-sphere">
+		<ref name="bsdf" id="bsdf-whitefurnace" />
+	</shape>
+
+</scene>
